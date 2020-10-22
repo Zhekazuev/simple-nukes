@@ -11,8 +11,18 @@ class MySQL:
         1) without close() - 'with' statement
             with MySQL(host='1.1.1.1', database='database', username='user', password='pass') as sql:
                 ...
+
+            # if you use env vars
+            or with MySQL() as sql:
+                ...
+
         2) with close(close)
             sql = MySQL(host='1.1.1.1', database='database', username='user', password='pass')
+            ...
+            sql.close()
+
+            # if you use env vars
+            sql = MySQL()
             ...
             sql.close()
 
@@ -33,6 +43,7 @@ class MySQL:
                     print(record)
         4) Insert, Update, Delete
     """
+
     def __init__(self, host=config.MySQL.host, database=config.MySQL.database, username=config.MySQL.username,
                  password=config.MySQL.password, connect_timeout=config.MySQL.connect_timeout):
         self.host = host
